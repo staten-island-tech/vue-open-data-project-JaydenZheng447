@@ -1,10 +1,14 @@
+<template>
+  <div>
+    <itemcard vfor />
+    <shoppingCart v-if="cart.length > 0" />
+  </div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-import ref from 'vue'
+import { reactive } from 'vue'
+
+const cart = reactive
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="scss" scoped></style>
