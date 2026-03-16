@@ -18,6 +18,9 @@ async function getPokemon() {
     console.log(error)
   }
 }
+//https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
+//https://data.cityofnewyork.us/resource/sejx-2gn3.json
+//https://data.cityofnewyork.us/resource/x4ud-jhxu.json
 onMounted(() => {
   getPokemon()
 })
