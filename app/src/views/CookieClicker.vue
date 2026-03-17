@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <PokemonCard v-for="(mon, index) in pokemon" :key="mon.name" :pokemon="mon" :id="index + 1" />
+    <PokemonCard
+      v-for="mon in pokemon"
+      :key="mon.name"
+      :pokemon="mon"
+      :organization_address="mon.organization_address"
+      :bin="mon.bin"
+    />
   </div>
 </template>
 
@@ -11,16 +17,19 @@ import PokemonCard from '../components/PokemonCard.vue'
 const pokemon = ref([])
 async function getPokemon() {
   try {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
+    console.log('fetched')
+    const response = await fetch('https://data.cityofnewyork.us/resource/x4ud-jhxu.json')
     const data = await response.json()
-    pokemon.value = data.results
+    pokemon.value = data
   } catch (error) {
     console.log(error)
   }
 }
+
 //https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
 //https://data.cityofnewyork.us/resource/sejx-2gn3.json
 //https://data.cityofnewyork.us/resource/x4ud-jhxu.json
+
 onMounted(() => {
   getPokemon()
 })

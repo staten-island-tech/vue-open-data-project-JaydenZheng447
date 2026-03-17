@@ -22,7 +22,7 @@ const router = createRouter({
       component: VueLists,
     },
     {
-      path: '/pkmn/:id',
+      path: '/pkmn/:bin',
       name: 'pokemondata',
       component: PokemonData,
     },

@@ -1,7 +1,8 @@
 <template>
   <router-link :to="pkmnPath" class="card">
-    <h2>{{ props.pokemon.name }}</h2>
-    <h3>{{ props.id }}</h3>
+    <h2>{{ props.pokemon.organization_name }}</h2>
+    <h3>{{ props.pokemon.organization_address }}</h3>
+    <h3>{{ props.pokemon.bin }}</h3>
   </router-link>
 </template>
 
@@ -12,13 +13,13 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  id: {
-    type: Number,
+  organization_address: {
+    type: String,
     required: true,
   },
 })
 const pkmnPath = computed(() => {
-  return `/pkmn/${props.pokemon.name}`
+  return `/pkmn/${props.pokemon.bin}`
 })
 </script>
 

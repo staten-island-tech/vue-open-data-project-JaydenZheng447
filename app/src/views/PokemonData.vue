@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ pokemon.name }}</h2>
+    <h2>{{ pokemon.organization_name }}</h2>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ const route = useRoute()
 const pokemon = ref(null)
 async function getPokemon(id) {
   console.log('did i run?')
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  const response = await fetch(`https://data.cityofnewyork.us/resource/x4ud-jhxu.json`)
   const data = await response.json()
   pokemon.value = data
 }
