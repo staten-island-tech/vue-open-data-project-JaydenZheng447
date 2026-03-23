@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>{{ pokemon.organization_name }}</h2>
+    <h2>Bin: {{ pokemon?.data?.id }}</h2>
+    <p>Organization: {{ pokemon?.organization_name }}</p>
+    <p>Address: {{ pokemon?.organization_address }}</p>
   </div>
 </template>
 
@@ -9,20 +11,24 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const pokemon = ref(null)
-async function getPokemon(id) {
-  console.log('did i run?')
-  const response = await fetch(`https://data.cityofnewyork.us/resource/x4ud-jhxu.json`)
-  const data = await response.json()
-  pokemon.value = data
+async function getPokemon(bin) {
+  try {
+    console.log('did i run? here`s the bin: ' + bin)
+    const response = await fetch(`https://data.cityofnewyork.us/resource/x4ud-jhxu.json?bin=${bin}`)
+    const data = await response.json()
+    pokemon.value = data
+  } catch (error) {
+    console.log(error)
+  }
 }
 watch(
-  () => route.params.id,
-  function (id) {
-    getPokemon(id)
+  () => route.params.bin,
+  function (bin) {
+    getPokemon(bin)
   },
 )
 onMounted(function () {
-  getPokemon(route.params.id)
+  getPokemon(route.params.bin)
 })
 </script>
 

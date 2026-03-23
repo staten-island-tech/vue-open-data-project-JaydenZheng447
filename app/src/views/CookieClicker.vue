@@ -1,14 +1,11 @@
 <template>
   <div class="container">
-    <PokemonCard
-      v-for="mon in pokemon"
-      :key="mon.name"
-      :pokemon="mon"
-      :organization_address="mon.organization_address"
-      :bin="mon.bin"
-    />
+    <PokemonCard v-for="mon in pokemon" :key="mon.bin" :pokemon="mon" />
   </div>
 </template>
+<!-- 
+:organization_address="mon.organization_address"
+      :bin="mon.bin" -->
 
 <script setup>
 import { ref, onMounted } from 'vue'

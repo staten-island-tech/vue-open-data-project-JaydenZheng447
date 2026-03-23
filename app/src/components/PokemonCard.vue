@@ -1,9 +1,12 @@
 <template>
-  <router-link :to="pkmnPath" class="card">
-    <h2>{{ props.pokemon.organization_name }}</h2>
-    <h3>{{ props.pokemon.organization_address }}</h3>
-    <h3>{{ props.pokemon.bin }}</h3>
-  </router-link>
+  <div class="card">
+    <router-link :to="pkmnPath">
+      <h3>Bin: {{ props.pokemon.bin }}</h3>
+    </router-link>
+    <h3>Name: {{ props.pokemon.organization_name }}</h3>
+    <h3>Address: {{ props.pokemon.organization_address }}</h3>
+    <h3>Borough: {{ props.pokemon.borough }}</h3>
+  </div>
 </template>
 
 <script setup>
@@ -11,10 +14,6 @@ import { computed } from 'vue'
 const props = defineProps({
   pokemon: {
     type: Object,
-    required: true,
-  },
-  organization_address: {
-    type: String,
     required: true,
   },
 })
@@ -34,10 +33,15 @@ const pkmnPath = computed(() => {
   align-items: center;
   padding: 10px;
   text-transform: uppercase;
+  text-align: center;
 }
+
 img {
   width: 100%;
   height: 80%;
   object-fit: cover;
+}
+h3 {
+  display: inline-block;
 }
 </style>
