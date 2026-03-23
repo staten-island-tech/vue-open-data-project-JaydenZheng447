@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Bin: {{ pokemon?.data?.id }}</h2>
+    <h2>Bin: {{ pokemon?.bin }}</h2>
     <p>Organization: {{ pokemon?.organization_name }}</p>
     <p>Address: {{ pokemon?.organization_address }}</p>
   </div>
@@ -16,7 +16,7 @@ async function getPokemon(bin) {
     console.log('did i run? here`s the bin: ' + bin)
     const response = await fetch(`https://data.cityofnewyork.us/resource/x4ud-jhxu.json?bin=${bin}`)
     const data = await response.json()
-    pokemon.value = data
+    pokemon.value = data[0]
   } catch (error) {
     console.log(error)
   }
