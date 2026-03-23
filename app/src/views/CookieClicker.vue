@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <PokemonCard v-for="mon in pokemon" :key="mon.bin" :pokemon="mon" />
+    <BarChart />
   </div>
 </template>
 <!-- 
@@ -9,8 +10,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { Bar } from 'vue-chartjs'
 
 import PokemonCard from '../components/PokemonCard.vue'
+import BarChart from './BarChart.vue'
 const pokemon = ref([])
 async function getPokemon() {
   try {
