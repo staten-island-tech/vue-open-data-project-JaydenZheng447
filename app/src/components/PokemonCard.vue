@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { computed } from 'vue'
 const props = defineProps({
   pokemon: {
@@ -20,6 +21,19 @@ const props = defineProps({
 const pkmnPath = computed(() => {
   return `/pkmn/${props.pokemon.bin}`
 })
+
+// let numManhattan = ref(0)
+// let numBrooklyn = ref(0)
+// for (let i = 0; i < props.pokemon.length; i++) {
+//   if (props.pokemon.borough === 'MANHATTAN') {
+//     numManhattan.value += 1
+//   } else if (props.pokemon.borough === 'BROOKLYN') {
+//     numBrooklyn.value += 1
+//   }
+// }
+
+// console.log('ur number of brooklyns is ' + numBrooklyn)
+// console.log('ur number of manhattans is ' + numManhattan)
 </script>
 
 <style scoped>
