@@ -1,11 +1,11 @@
 <template>
   <div class="card">
     <router-link :to="pkmnPath">
-      <h3>Bin: {{ props.pokemon.bin }}</h3>
+      <h3>Bin: {{ props.city.bin }}</h3>
     </router-link>
-    <h3>Name: {{ props.pokemon.organization_name }}</h3>
-    <h3>Address: {{ props.pokemon.organization_address }}</h3>
-    <h3>Borough: {{ props.pokemon.borough }}</h3>
+    <h3>Name: {{ props.city.organization_name }}</h3>
+    <h3>Address: {{ props.city.organization_address }}</h3>
+    <h3>Borough: {{ props.city.borough }}</h3>
   </div>
 </template>
 
@@ -13,21 +13,21 @@
 import { ref } from 'vue'
 import { computed } from 'vue'
 const props = defineProps({
-  pokemon: {
+  city: {
     type: Object,
     required: true,
   },
 })
 const pkmnPath = computed(() => {
-  return `/pkmn/${props.pokemon.bin}`
+  return `/pkmn/${props.city.bin}`
 })
 
 // let numManhattan = ref(0)
 // let numBrooklyn = ref(0)
-// for (let i = 0; i < props.pokemon.length; i++) {
-//   if (props.pokemon.borough === 'MANHATTAN') {
+// for (let i = 0; i < props.city.length; i++) {
+//   if (props.city.borough === 'MANHATTAN') {
 //     numManhattan.value += 1
-//   } else if (props.pokemon.borough === 'BROOKLYN') {
+//   } else if (props.city.borough === 'BROOKLYN') {
 //     numBrooklyn.value += 1
 //   }
 // }
