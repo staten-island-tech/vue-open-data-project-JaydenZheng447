@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <PokemonCard v-for="touristsite in pokemon" :key="touristsite.bin" :city="touristsite" />
-    <BarChart />
+    <PokemonCard v-for="touristsite in apiArray" :key="touristsite.bin" :city="touristsite" />
+    <BarChart v-if="loaded" :data="chartData" :options="chartOptions" />
   </div>
 </template>
 <!-- 
@@ -26,11 +26,11 @@ import BarChart from './BarChart.vue'
 
 import { computed } from 'vue'
 
-const pokemon = ref([])
+const apiArray = ref([])
 let smallRequest = ref(0)
 let mediumRequest = ref(0)
 let largeRequest = ref(0)
-
+const loaded = ref(false)
 async function getPokemon() {
   try {
     console.log('fetched')
@@ -49,14 +49,14 @@ async function getPokemon() {
     }
 
     console.log(
-      'I have numManhattan of ' +
+      'I have S-M-L request value types with counts of ' +
         smallRequest.value +
         ' and ' +
         mediumRequest.value +
         ' and ' +
         largeRequest.value,
     )
-    pokemon.value = data
+    apiArray.value = data
   } catch (error) {
     console.log(error)
   }
