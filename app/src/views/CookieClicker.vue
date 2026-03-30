@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+    <h3 v-if="loaded = false">Please wait for the API to load</h3>
     <PokemonCard v-for="touristsite in pokemon" :key="touristsite.bin" :city="touristsite" />
-    <BarChart />
+    <BarChart v-if="loaded" />
   </div>
 </template>
 <!-- 
@@ -30,6 +31,7 @@ const pokemon = ref([])
 let smallRequest = ref(0)
 let mediumRequest = ref(0)
 let largeRequest = ref(0)
+let loaded = false
 
 async function getPokemon() {
   try {
@@ -57,6 +59,7 @@ async function getPokemon() {
         largeRequest.value,
     )
     pokemon.value = data
+    loaded = true
   } catch (error) {
     console.log(error)
   }
@@ -69,17 +72,6 @@ async function getPokemon() {
 onMounted(() => {
   getPokemon()
 })
-
-// console.log(pokemon.value)
-// for (let i = 0; i < pokemon.length; i++) {
-//   if (pokemon[i].borough === 'MANHATTAN') {
-//     numManhattan.value += 1
-//   } else if (pokemon[i].borough === 'BsROOKLYN') {
-//     numBrooklyn.value += 1
-//   }
-// }
-//
-// console.log('ur number of brooklyns is ' + numBrooklyn)
 </script>
 
 <style scoped>

@@ -35,19 +35,6 @@ const props = defineProps({
 const pkmnPath = computed(() => {
   return `/pkmn/${props.city.bin}`
 })
-
-// let numManhattan = ref(0)
-// let numBrooklyn = ref(0)
-// for (let i = 0; i < props.city.length; i++) {
-//   if (props.city.borough === 'MANHATTAN') {
-//     numManhattan.value += 1
-//   } else if (props.city.borough === 'BROOKLYN') {
-//     numBrooklyn.value += 1
-//   }
-// }
-
-// console.log('ur number of brooklyns is ' + numBrooklyn)
-// console.log('ur number of manhattans is ' + numManhattan)
 </script>
 
 <style scoped>
