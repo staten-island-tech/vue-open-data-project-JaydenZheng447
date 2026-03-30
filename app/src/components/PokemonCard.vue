@@ -6,12 +6,26 @@
     <h3>Name: {{ props.city.organization_name }}</h3>
     <h3>Address: {{ props.city.organization_address }}</h3>
     <h3>Borough: {{ props.city.borough }}</h3>
+    <BarChart />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { computed } from 'vue'
+import { Bar } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from 'chart.js'
+
+import BarChart from '../views/BarChart.vue'
+
 const props = defineProps({
   city: {
     type: Object,
