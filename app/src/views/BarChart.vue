@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       chartData: {
-        labels: ['January', 'February', 'March'],
+        labels: ['amount_requested', 'bin', 'census_tract'],
         datasets: [{ data: [40, 20, 12] }],
       },
       chartOptions: {

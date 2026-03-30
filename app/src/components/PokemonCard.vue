@@ -6,7 +6,7 @@
     <h3>Name: {{ props.city.organization_name }}</h3>
     <h3>Address: {{ props.city.organization_address }}</h3>
     <h3>Borough: {{ props.city.borough }}</h3>
-    <BarChart />
+    <BarChart :data="chartData2" />
   </div>
 </template>
 
@@ -25,6 +25,16 @@ import {
 } from 'chart.js'
 
 import BarChart from '../views/BarChart.vue'
+
+const binVar = computed(() => {
+  return props.city.bin
+})
+console.log(binVar)
+
+let chartData2 = {
+  labels: ['amount_requested', 'bin', 'census_tract'],
+  datasets: [{ data: [400, 200, 120] }],
+}
 
 const props = defineProps({
   city: {
