@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h3 v-if="loaded = false">Please wait for the API to load</h3>
-    <PokemonCard v-for="touristsite in pokemon" :key="touristsite.bin" :city="touristsite" />
-    <BarChart v-if="loaded" />
+    <h3 v-if="!loaded">Please wait for the API to load</h3>
+    <PokemonCard v-for="touristsite in apiArray" :key="touristsite.bin" :city="touristsite" />
+    <BarChart v-if="loaded" :data="allPokemonCardChartData" />
   </div>
 </template>
 <!-- 
@@ -31,7 +31,12 @@ const apiArray = ref([])
 let smallRequest = ref(0)
 let mediumRequest = ref(0)
 let largeRequest = ref(0)
-let loaded = false
+let loaded = ref(false)
+
+let allPokemonCardChartData = ref({
+  labels: ['smallRequest', 'mediumRequest', 'largeRequest'],
+  datasets: [{ data: [] }], // Start empty, update after fetch
+})
 
 async function getPokemon() {
   try {
@@ -58,17 +63,22 @@ async function getPokemon() {
         ' and ' +
         largeRequest.value,
     )
-    pokemon.value = data
-    loaded = true
+    apiArray.value = data
+    loaded.value = true
+    console.log(loaded.value)
+
+    // Update chart data with fetched counts
+    allPokemonCardChartData.value.datasets[0].data = [
+      smallRequest.value,
+      mediumRequest.value,
+      largeRequest.value,
+    ]
   } catch (error) {
-    console.log(error)
+    console.log(
+      'There seems to be an error with this API iteration. Here is the error message: ' + error,
+    )
   }
 }
-
-//https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
-//https://data.cityofnewyork.us/resource/sejx-2gn3.json
-//https://data.cityofnewyork.us/resource/x4ud-jhxu.json
-
 onMounted(() => {
   getPokemon()
 })

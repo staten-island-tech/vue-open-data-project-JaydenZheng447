@@ -30,6 +30,9 @@ const binVar = computed(() => {
   return props.city.bin
 })
 console.log(binVar)
+/* 
+const cardData = ref([props.city.amount_requested, props.city.bin, props.city.census_tract])
+console.log(cardData.value) */
 
 let chartData2 = {
   labels: ['amount_requested', 'bin', 'census_tract'],
