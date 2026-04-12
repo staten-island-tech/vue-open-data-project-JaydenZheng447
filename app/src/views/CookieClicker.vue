@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3 v-if="loaded = false">Please wait for the API to load</h3>
-    <PokemonCard v-for="touristsite in pokemon" :key="touristsite.bin" :city="touristsite" />
+    <PokemonCard v-for="touristsite in apiArray" :key="touristsite.bin" :city="touristsite" />
     <BarChart v-if="loaded" />
   </div>
 </template>
@@ -58,7 +58,7 @@ async function getPokemon() {
         ' and ' +
         largeRequest.value,
     )
-    pokemon.value = data
+    apiArray.value = data
     loaded = true
   } catch (error) {
     console.log(error)
