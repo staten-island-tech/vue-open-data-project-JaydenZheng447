@@ -2,7 +2,7 @@
   <div class="container">
     <h3 v-if="loaded = false">Please wait for the API to load</h3>
     <PokemonCard v-for="touristsite in apiArray" :key="touristsite.bin" :city="touristsite" />
-    <BarChart v-if="loaded" />
+    <BarChart v-if="loaded" :data="allPokemonCardChartData" />
   </div>
 </template>
 <!-- 
@@ -61,7 +61,9 @@ async function getPokemon() {
     apiArray.value = data
     loaded = true
   } catch (error) {
-    console.log(error)
+    console.log(
+      'There seems to be an error with this API iteration. Here is the error message: ' + error,
+    )
   }
 }
 
@@ -72,6 +74,18 @@ async function getPokemon() {
 onMounted(() => {
   getPokemon()
 })
+/* 
+const props = defineProps({
+  page: {
+    type: Object,
+    required: true,
+  },
+}) */
+
+let allPokemonCardChartData = {
+  labels: ['smallRequest', 'mediumRequest', 'largeRequest'],
+  datasets: [{ data: [5, 2, 1] }],
+}
 </script>
 
 <style scoped>
