@@ -1,13 +1,15 @@
 <template>
   <div class="container">
     <h3 v-if="!loaded">Please wait for the API to load</h3>
-    <input
-      :value="text"
-      @input="(event) => (text = event.target.value)"
-      @keyup.enter="searchPokemon"
-      placeholder="Please type the bin#"
-    />
-    <button @click="searchPokemon">Search</button>
+    <div>
+      <input
+        :value="text"
+        @input="(event) => (text = event.target.value)"
+        @keyup.enter="searchPokemon"
+        placeholder="Please type the bin#"
+      />
+      <button @click="searchPokemon">Search</button>
+    </div>
     <h3>
       The 'census_tract' data value is present on the bar chart. It's just that the scale is in the
       thousands so for any values less than triple digits, its very hard to see.
