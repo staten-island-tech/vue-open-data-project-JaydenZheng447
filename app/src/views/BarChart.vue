@@ -19,12 +19,19 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   name: 'BarChart',
   components: { Bar },
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    chartData() {
+      return this.data
+    },
+  },
   data() {
     return {
-      chartData: {
-        labels: ['amount_requested', 'bin', 'census_tract'],
-        datasets: [{ data: [40, 20, 12] }],
-      },
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,

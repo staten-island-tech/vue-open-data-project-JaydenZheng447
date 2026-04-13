@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <h3 v-if="!loaded">Please wait for the API to load</h3>
+    <h3>
+      The 'census_tract' data value is present on the bar chart. It's just that the scale is in the
+      thousands so for any values less than triple digits, its very hard to see.
+    </h3>
     <PokemonCard v-for="touristsite in apiArray" :key="touristsite.bin" :city="touristsite" />
+    <h3>
+      For the chart below, smallRequests refer to requested funds under $3,500, mediumRequests
+      between $3,500 and $7,500, and largeRequests being $7,500 and above for each Card
+    </h3>
     <BarChart v-if="loaded" :data="allPokemonCardChartData" />
   </div>
 </template>

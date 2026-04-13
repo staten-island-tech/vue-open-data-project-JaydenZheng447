@@ -26,28 +26,27 @@ import {
 
 import BarChart from '../views/BarChart.vue'
 
-const binVar = computed(() => {
-  return props.city.bin
-})
-console.log(binVar)
-/* 
-const cardData = ref([props.city.amount_requested, props.city.bin, props.city.census_tract])
-console.log(cardData.value) */
-
-let chartData2 = {
-  labels: ['amount_requested', 'bin', 'census_tract'],
-  datasets: [{ data: [400, 200, 120] }],
-}
-
 const props = defineProps({
   city: {
     type: Object,
     required: true,
   },
 })
-const pkmnPath = computed(() => {
-  return `/pkmn/${props.city.bin}`
-})
+
+const chartData2 = computed(() => ({
+  labels: ['amount_requested', 'zip_code', 'census_tract'],
+  datasets: [
+    {
+      data: [
+        Number(props.city.amount_requested) || 0,
+        Number(props.city.zip) || 0,
+        Number(props.city.census_tract) || 0,
+      ],
+    },
+  ],
+}))
+
+const pkmnPath = computed(() => `/pkmn/${props.city.bin}`)
 </script>
 
 <style scoped>
