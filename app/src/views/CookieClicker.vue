@@ -1,6 +1,15 @@
 <template>
   <div class="container">
     <h3 v-if="!loaded">Please wait for the API to load</h3>
+    <div>
+      <input
+        :value="text"
+        @input="(event) => (text = event.target.value)"
+        @keyup.enter="searchPokemon"
+        placeholder="Please type the bin#"
+      />
+      <button @click="searchPokemon">Search</button>
+    </div>
     <h3>
       The 'census_tract' data value is present on the bar chart. It's just that the scale is in the
       thousands so for any values less than triple digits, its very hard to see.
@@ -19,6 +28,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { Bar } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -35,11 +45,20 @@ import BarChart from './BarChart.vue'
 
 import { computed } from 'vue'
 
+const router = useRouter()
+const text = ref('')
 const apiArray = ref([])
 let smallRequest = ref(0)
 let mediumRequest = ref(0)
 let largeRequest = ref(0)
 let loaded = ref(false)
+
+const searchPokemon = () => {
+  if (text.value.trim()) {
+    router.push(`/pkmn/${text.value}`)
+    text.value = ''
+  }
+}
 
 let allPokemonCardChartData = ref({
   labels: ['smallRequest', 'mediumRequest', 'largeRequest'],
@@ -93,6 +112,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
+body {
+  background-color: cyan;
+}
 .container {
   width: 80vw;
   margin: 30px auto;

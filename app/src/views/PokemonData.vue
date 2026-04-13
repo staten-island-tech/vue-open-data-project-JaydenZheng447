@@ -52,9 +52,9 @@ const chartData3 = computed(() => ({
   datasets: [
     {
       data: [
-        Number(pokemon?.amount_requested) || 0,
-        Number(pokemon?.zip) || 0,
-        Number(pokemon?.census_tract) || 0,
+        Number(pokemon.value?.amount_requested) || 0,
+        Number(pokemon.value?.zip) || 0,
+        Number(pokemon.value?.census_tract) || 0,
       ],
     },
   ],
